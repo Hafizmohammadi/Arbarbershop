@@ -154,15 +154,28 @@ bookingForm.addEventListener('submit', async (e) => {
 });
 
 // ===== CONTACT FORM =====
-document.getElementById('contactForm').addEventListener('submit', (e) => {
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = e.target.querySelector('.submit-btn');
-    const original = btn.textContent;
-    btn.textContent = 'Sent!';
-    btn.style.background = '#2a7a2a';
-    setTimeout(() => {
-        btn.textContent = original;
-        btn.style.background = '';
-        e.target.reset();
-    }, 2500);
+    const form = e.target;
+    const btn = form.querySelector('.submit-btn');
+    const data = Object.fromEntries(new FormData(form));
+
+    const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            access_key: '61557223-1d26-44cd-9838-e181fb2db0b5',
+            ...data
+        })
+    });
+
+    if (response.ok) {
+        btn.textContent = 'Sent!';
+        btn.style.background = '#2a7a2a';
+        setTimeout(() => {
+            btn.textContent = 'Submit';
+            btn.style.background = '';
+            form.reset();
+        }, 2500);
+    }
 });
