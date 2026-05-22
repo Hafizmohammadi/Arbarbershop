@@ -90,8 +90,8 @@ document.addEventListener('keydown', (e) => {
 
 // ===== SUPABASE =====
 const db = supabase.createClient(
-    'https://qsuwgcdquldkcweajhuj.supabase.co',
-    'sb_publishable_HGA6PbzX4bX8v2c4VUC9yA_Dv3UfBRP'
+    'https://apmkmwzgjohiqlgdvwmy.supabase.co',
+    'sb_publishable_vlbdS8RncVPTdF9mk0zvJA_u5rO-cmi'
 );
 
 const dateInput = bookingForm.querySelector('input[name="Preferred Date"]');
@@ -106,10 +106,12 @@ dateInput.addEventListener('change', async () => {
         opt.textContent = opt.textContent.replace(' (Booked)', '');
     });
 
-    const { data } = await db
-        .from('bookings')
+    const { data, error } = await db
+        .from('booking')
         .select('preferred_time')
         .eq('preferred_date', date);
+
+    console.log('Booked slots:', data, 'Error:', error);
 
     if (data) {
         data.forEach(booking => {
@@ -126,7 +128,7 @@ bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(bookingForm));
 
-    await db.from('bookings').insert({
+    const { error } = await db.from('booking').insert({
         full_name: data['Full Name'],
         phone: data['Phone'],
         email: data['Email'],
@@ -136,10 +138,15 @@ bookingForm.addEventListener('submit', async (e) => {
         notes: data['Notes']
     });
 
-    await fetch('https://formspree.io/f/xaqkjaoj', {
+    console.log('Insert error:', error);
+
+    await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+            access_key: '61557223-1d26-44cd-9838-e181fb2db0b5',
+            ...data
+        })
     });
 
     bookingForm.style.display = 'none';
