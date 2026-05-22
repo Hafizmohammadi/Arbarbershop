@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARBarbershop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo">
+            <img class="logo-img" src="assets/Logo/240_F_251383865_QrEFWXM39PZ3UX1U8zkgY1CPxmEfqQt6.jpg" alt="ARBarbershop logo">
+            <span class="logo-text">ARBarbershop</span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#gallery" class="nav-link">Gallery</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="nav-book-btn" id="navBookBtn">Book Now</button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== BOOKING MODAL ===== -->
+    <div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal">
+            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Book an Appointment</h2>
+            <p class="modal-subtitle">Fill in the details below and we'll confirm your slot.</p>
+            <form class="booking-form" id="bookingForm">
+                <div class="booking-row two-col">
+                    <div class="booking-field">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="John Smith" required>
+                    </div>
+                    <div class="booking-field">
+                        <label>Phone</label>
+                        <input type="tel" placeholder="+1 (555) 000-0000">
+                    </div>
+                </div>
+                <div class="booking-field">
+                    <label>Email</label>
+                    <input type="email" placeholder="john@example.com">
+                </div>
+                <div class="booking-field">
+                    <label>Service</label>
+                    <div class="select-wrap">
+                        <select required>
+                            <option value="" disabled selected>Select a service</option>
+                            <option>Haircut — $35</option>
+                            <option>Beard Shaving — $25</option>
+                            <option>Beard Trim — $25</option>
+                            <option>Haircut with Beard — $45</option>
+                            <option>Haircut with Design — $40</option>
+                            <option>Signature VIP Cut — $70</option>
+                            <option>Lineup — $20</option>
+                            <option>Curly — $80</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="booking-row two-col">
+                    <div class="booking-field">
+                        <label>Preferred Date</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="booking-field">
+                        <label>Preferred Time</label>
+                        <div class="select-wrap">
+                        <select required>
+                            <option value="" disabled selected>Select a time</option>
+                            <option>10:00 AM</option>
+                            <option>10:30 AM</option>
+                            <option>11:00 AM</option>
+                            <option>11:30 AM</option>
+                            <option>12:00 PM</option>
+                            <option>12:30 PM</option>
+                            <option>1:00 PM</option>
+                            <option>1:30 PM</option>
+                            <option>2:00 PM</option>
+                            <option>2:30 PM</option>
+                            <option>3:00 PM</option>
+                            <option>3:30 PM</option>
+                            <option>4:00 PM</option>
+                            <option>4:30 PM</option>
+                            <option>5:00 PM</option>
+                            <option>5:30 PM</option>
+                            <option>6:00 PM</option>
+                            <option>6:30 PM</option>
+                            <option>7:00 PM</option>
+                            <option>7:30 PM</option>
+                            <option>8:00 PM</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="booking-field">
+                    <label>Notes <span class="optional">(optional)</span></label>
+                    <textarea placeholder="Any special requests or preferences..." rows="3"></textarea>
+                </div>
+                <button type="submit" class="booking-submit">Confirm Booking</button>
+            </form>
+            <div class="booking-success" id="bookingSuccess">
+                <i class="fas fa-check-circle"></i>
+                <h3>Booking Confirmed!</h3>
+                <p>Thanks! We'll be in touch shortly to confirm your appointment.</p>
+                <button class="booking-close-success" id="closeSuccess">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">- GENTLEMENS -</p>
+            <h1 class="hero-title"><strong><em>WALK IN. SIT DOWN. LOOK CONFIDENT.</em></strong></h1>
+            <button class="hero-book-btn" id="heroBookBtn">Book Now</button>
+        </div>
+        <div class="hero-arrow">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section id="services" class="services">
+        <div class="services-container">
+            <h2 class="section-heading">SERVICES</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-card-info">
+                        <h3 class="service-card-name">Haircut</h3>
+                        <p class="service-card-desc">Classic barbershop cut, 30 minutes</p>
+                    </div>
+                    <p class="service-card-price">$35</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-info">
+                        <h3 class="service-card-name">Beard Shaving</h3>
+                        <p class="service-card-desc">Hot towel straight razor shave, 30 minutes</p>
+                    </div>
+                    <p class="service-card-price">$25</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-info">
+                        <h3 class="service-card-name">Beard Trim</h3>
+                        <p class="service-card-desc">Shape & detail clean-up, 30 minutes</p>
+                    </div>
+                    <p class="service-card-price">$25</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-info">
+                        <h3 class="service-card-name">Haircut with Beard</h3>
+                        <p class="service-card-desc">Full combo cut & beard service, 1 hour</p>
+                    </div>
+                    <p class="service-card-price">$45</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-info">
+                        <h3 class="service-card-name">Haircut with Design</h3>
+                        <p class="service-card-desc">Cut with custom razor design, 40 minutes</p>
+                    </div>
+                    <p class="service-card-price">$40</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-info">
+                        <h3 class="service-card-name">Signature VIP Cut</h3>
+                        <p class="service-card-desc">Premium full-service experience, 1 hour</p>
+                    </div>
+                    <p class="service-card-price">$70</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-info">
+                        <h3 class="service-card-name">Lineup</h3>
+                        <p class="service-card-desc">Clean edge & neckline tidy-up, 15 minutes</p>
+                    </div>
+                    <p class="service-card-price">$20</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-info">
+                        <h3 class="service-card-name">Curly</h3>
+                        <p class="service-card-desc">Curly hair specialist cut & style, 1 hour</p>
+                    </div>
+                    <p class="service-card-price">$80</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section id="gallery" class="gallery">
+        <div class="gallery-container">
+            <h2 class="gallery-heading">GALLERY</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img class="gallery-img gallery-img--pompadour-fade" src="assets/Gallery/IMG_0595.JPG" alt="Slick pompadour with skin fade and beard">
+                </div>
+                <div class="gallery-item">
+                    <img class="gallery-img gallery-img--curly-fade-back" src="assets/Gallery/IMG_0999.JPG" alt="Curly top with skin fade, back view">
+                </div>
+                <div class="gallery-item">
+                    <img class="gallery-img gallery-img--textured-waves-front" src="assets/Gallery/IMG_1210.JPG" alt="Textured waves with fade, front view">
+                </div>
+                <div class="gallery-item">
+                    <img class="gallery-img gallery-img--textured-waves-side" src="assets/Gallery/IMG_1185.JPG" alt="Textured waves with fade, side view">
+                </div>
+                <div class="gallery-item">
+                    <img class="gallery-img gallery-img--high-skin-fade-beard" src="assets/Gallery/IMG_1382.JPG" alt="High skin fade with short beard">
+                </div>
+                <div class="gallery-item">
+                    <img class="gallery-img gallery-img--curly-afro-fade" src="assets/Gallery/IMG_1549.JPG" alt="Curly afro top with skin fade and neckline design">
+                </div>
+                <div class="gallery-item">
+                    <img class="gallery-img gallery-img--razor-art-design" src="assets/Gallery/IMG_1815.JPG" alt="Custom razor art design shaved into fade">
+                </div>
+                <div class="gallery-item">
+                    <img class="gallery-img gallery-img--kids-pompadour-front" src="assets/Gallery/IMG_3902.JPG" alt="Kids pompadour fade, front view">
+                </div>
+                <div class="gallery-item">
+                    <img class="gallery-img gallery-img--kids-pompadour-side" src="assets/Gallery/IMG_3903.JPG" alt="Kids pompadour fade, side view">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OUR STORY ===== -->
+    <section id="about" class="story">
+        <div class="story-container">
+            <div class="story-image">
+                <img src="assets/IMG_2329.jpg" alt="ARBarbershop lounge and waiting area">
+            </div>
+            <div class="story-content">
+                <h2 class="story-heading"><span class="text-orange">OUR</span> STORY</h2>
+                <p>At ArBarbershop, we've built our name on one thing — showing up and delivering, every single time. Clients keep coming back because they know what they're going to get: clean lines, sharp fades, and a barber who actually cares about the details.</p>
+                <p>We take our time with every cut. No rushing, no shortcuts. Just precise, consistent work that speaks for itself.</p>
+                <p>The goal is simple — create a space where you can sit down, relax, and walk out looking and feeling your best. Every visit, without question.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact">
+        <div class="contact-pattern"></div>
+        <div class="contact-container">
+            <h2 class="section-heading">GET IN TOUCH</h2>
+            <form class="contact-form" id="contactForm">
+                <div class="form-row two-col">
+                    <input type="text" placeholder="First Name" required>
+                    <input type="text" placeholder="Last Name" required>
+                </div>
+                <div class="form-row two-col">
+                    <input type="tel" placeholder="Phone">
+                    <input type="text" placeholder="Subject">
+                </div>
+                <div class="form-row">
+                    <textarea placeholder="Message" rows="5"></textarea>
+                </div>
+                <div class="form-row center">
+                    <button type="submit" class="submit-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-map">
+            <iframe
+                src="https://maps.google.com/maps?q=3925+S+State+St,+Millcreek,+UT+84107&output=embed"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="ARBarbershop location">
+            </iframe>
+        </div>
+        <div class="footer-top">
+            <div class="footer-col">
+                <h3>SAY HELLO</h3>
+                <p>Phone: 385 264 8817</p>
+                <p>Email: arbarbershop551@gmail.com</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>OUR ADDRESS</h3>
+                <p>3925 S State St, Suite #D</p>
+                <p>Millcreek, UT 84107</p>
+            </div>
+            <div class="footer-col">
+                <h3>OPENING HOURS</h3>
+                <p>Tue - Sun: 10am - 8pm</p>
+                <p>Monday: Closed</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
