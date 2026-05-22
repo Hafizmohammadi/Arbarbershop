@@ -35,6 +35,7 @@
         </div>
     </nav>
 
+
     <!-- ===== BOOKING MODAL ===== -->
     <div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal">
@@ -45,21 +46,21 @@
                 <div class="booking-row two-col">
                     <div class="booking-field">
                         <label>Full Name</label>
-                        <input type="text" placeholder="John Smith" required>
+                        <input type="text" name="Full Name" placeholder="John Smith" required>
                     </div>
                     <div class="booking-field">
                         <label>Phone</label>
-                        <input type="tel" placeholder="+1 (555) 000-0000">
+                        <input type="tel" name="Phone" placeholder="+1 (555) 000-0000">
                     </div>
                 </div>
                 <div class="booking-field">
                     <label>Email</label>
-                    <input type="email" placeholder="john@example.com">
+                    <input type="email" name="Email" placeholder="john@example.com">
                 </div>
                 <div class="booking-field">
                     <label>Service</label>
                     <div class="select-wrap">
-                        <select required>
+                        <select name="Service" required>
                             <option value="" disabled selected>Select a service</option>
                             <option>Haircut — $35</option>
                             <option>Beard Shaving — $25</option>
@@ -75,12 +76,12 @@
                 <div class="booking-row two-col">
                     <div class="booking-field">
                         <label>Preferred Date</label>
-                        <input type="date" required>
+                        <input type="date" name="Preferred Date" required>
                     </div>
                     <div class="booking-field">
                         <label>Preferred Time</label>
                         <div class="select-wrap">
-                        <select required>
+                        <select name="Preferred Time" required>
                             <option value="" disabled selected>Select a time</option>
                             <option>10:00 AM</option>
                             <option>10:30 AM</option>
@@ -109,7 +110,7 @@
                 </div>
                 <div class="booking-field">
                     <label>Notes <span class="optional">(optional)</span></label>
-                    <textarea placeholder="Any special requests or preferences..." rows="3"></textarea>
+                    <textarea name="Notes" placeholder="Any special requests or preferences..." rows="3"></textarea>
                 </div>
                 <button type="submit" class="booking-submit">Confirm Booking</button>
             </form>

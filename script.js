@@ -58,14 +58,6 @@ const bookingForm = document.getElementById('bookingForm');
 const bookingSuccess = document.getElementById('bookingSuccess');
 const closeSuccess = document.getElementById('closeSuccess');
 
-// Also wire up all "Book Now" service buttons
-document.querySelectorAll('.book-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        openModal();
-    });
-});
-
 function openModal() {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -74,7 +66,6 @@ function openModal() {
 function closeModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
-    // Reset after transition
     setTimeout(() => {
         bookingForm.style.display = '';
         bookingForm.reset();
@@ -89,21 +80,26 @@ if (heroBookBtn) heroBookBtn.addEventListener('click', openModal);
 modalClose.addEventListener('click', closeModal);
 closeSuccess.addEventListener('click', closeModal);
 
-// Close on backdrop click
 modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
 });
 
-// Close on Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
 });
 
-// Booking form submit
-bookingForm.addEventListener('submit', (e) => {
+bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    bookingForm.style.display = 'none';
-    bookingSuccess.classList.add('show');
+    const data = Object.fromEntries(new FormData(bookingForm));
+    const response = await fetch('https://formspree.io/f/xaqkjaoj', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (response.ok) {
+        bookingForm.style.display = 'none';
+        bookingSuccess.classList.add('show');
+    }
 });
 
 // ===== CONTACT FORM =====
