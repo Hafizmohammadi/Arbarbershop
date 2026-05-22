@@ -88,18 +88,62 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
 });
 
+// ===== SUPABASE =====
+const db = supabase.createClient(
+    'https://qsuwgcdquldkcweajhuj.supabase.co',
+    'sb_publishable_HGA6PbzX4bX8v2c4VUC9yA_Dv3UfBRP'
+);
+
+const dateInput = bookingForm.querySelector('input[name="Preferred Date"]');
+const timeSelect = bookingForm.querySelector('select[name="Preferred Time"]');
+
+dateInput.addEventListener('change', async () => {
+    const date = dateInput.value;
+    if (!date) return;
+
+    Array.from(timeSelect.options).forEach(opt => {
+        opt.disabled = false;
+        opt.textContent = opt.textContent.replace(' (Booked)', '');
+    });
+
+    const { data } = await db
+        .from('bookings')
+        .select('preferred_time')
+        .eq('preferred_date', date);
+
+    if (data) {
+        data.forEach(booking => {
+            const opt = Array.from(timeSelect.options).find(o => o.textContent.includes(booking.preferred_time));
+            if (opt) {
+                opt.disabled = true;
+                opt.textContent += ' (Booked)';
+            }
+        });
+    }
+});
+
 bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(bookingForm));
-    const response = await fetch('https://formspree.io/f/xaqkjaoj', {
+
+    await db.from('bookings').insert({
+        full_name: data['Full Name'],
+        phone: data['Phone'],
+        email: data['Email'],
+        service: data['Service'],
+        preferred_date: data['Preferred Date'],
+        preferred_time: data['Preferred Time'],
+        notes: data['Notes']
+    });
+
+    await fetch('https://formspree.io/f/xaqkjaoj', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
-    if (response.ok) {
-        bookingForm.style.display = 'none';
-        bookingSuccess.classList.add('show');
-    }
+
+    bookingForm.style.display = 'none';
+    bookingSuccess.classList.add('show');
 });
 
 // ===== CONTACT FORM =====
