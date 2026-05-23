@@ -24,7 +24,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="assets/FullSizeRender.jpg" as="image">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 </head>
 <body>
 
@@ -224,31 +226,31 @@
             <h2 class="gallery-heading">GALLERY</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img class="gallery-img gallery-img--pompadour-fade" src="assets/Gallery/IMG_0595.JPG" alt="Slick pompadour with skin fade and beard">
+                    <img loading="lazy" class="gallery-img gallery-img--pompadour-fade" src="assets/Gallery/IMG_0595.JPG" alt="Slick pompadour with skin fade and beard">
                 </div>
                 <div class="gallery-item">
-                    <img class="gallery-img gallery-img--curly-fade-back" src="assets/Gallery/IMG_0999.JPG" alt="Curly top with skin fade, back view">
+                    <img loading="lazy" class="gallery-img gallery-img--curly-fade-back" src="assets/Gallery/IMG_0999.JPG" alt="Curly top with skin fade, back view">
                 </div>
                 <div class="gallery-item">
-                    <img class="gallery-img gallery-img--textured-waves-front" src="assets/Gallery/IMG_1210.JPG" alt="Textured waves with fade, front view">
+                    <img loading="lazy" class="gallery-img gallery-img--textured-waves-front" src="assets/Gallery/IMG_1210.JPG" alt="Textured waves with fade, front view">
                 </div>
                 <div class="gallery-item">
-                    <img class="gallery-img gallery-img--textured-waves-side" src="assets/Gallery/IMG_1185.JPG" alt="Textured waves with fade, side view">
+                    <img loading="lazy" class="gallery-img gallery-img--textured-waves-side" src="assets/Gallery/IMG_1185.JPG" alt="Textured waves with fade, side view">
                 </div>
                 <div class="gallery-item">
-                    <img class="gallery-img gallery-img--high-skin-fade-beard" src="assets/Gallery/IMG_1382.JPG" alt="High skin fade with short beard">
+                    <img loading="lazy" class="gallery-img gallery-img--high-skin-fade-beard" src="assets/Gallery/IMG_1382.JPG" alt="High skin fade with short beard">
                 </div>
                 <div class="gallery-item">
-                    <img class="gallery-img gallery-img--curly-afro-fade" src="assets/Gallery/IMG_1549.JPG" alt="Curly afro top with skin fade and neckline design">
+                    <img loading="lazy" class="gallery-img gallery-img--curly-afro-fade" src="assets/Gallery/IMG_1549.JPG" alt="Curly afro top with skin fade and neckline design">
                 </div>
                 <div class="gallery-item">
-                    <img class="gallery-img gallery-img--razor-art-design" src="assets/Gallery/IMG_1815.JPG" alt="Custom razor art design shaved into fade">
+                    <img loading="lazy" class="gallery-img gallery-img--razor-art-design" src="assets/Gallery/IMG_1815.JPG" alt="Custom razor art design shaved into fade">
                 </div>
                 <div class="gallery-item">
-                    <img class="gallery-img gallery-img--kids-pompadour-front" src="assets/Gallery/IMG_3902.JPG" alt="Kids pompadour fade, front view">
+                    <img loading="lazy" class="gallery-img gallery-img--kids-pompadour-front" src="assets/Gallery/IMG_3902.JPG" alt="Kids pompadour fade, front view">
                 </div>
                 <div class="gallery-item">
-                    <img class="gallery-img gallery-img--kids-pompadour-side" src="assets/Gallery/IMG_3903.JPG" alt="Kids pompadour fade, side view">
+                    <img loading="lazy" class="gallery-img gallery-img--kids-pompadour-side" src="assets/Gallery/IMG_3903.JPG" alt="Kids pompadour fade, side view">
                 </div>
             </div>
         </div>
@@ -258,7 +260,7 @@
     <section id="about" class="story">
         <div class="story-container">
             <div class="story-image">
-                <img src="assets/IMG_2329.jpg" alt="ARBarbershop lounge and waiting area">
+                <img src="assets/IMG_2329.jpg" alt="ARBarbershop lounge and waiting area" loading="lazy">
             </div>
             <div class="story-content">
                 <h2 class="story-heading"><span class="text-orange">OUR</span> STORY</h2>
@@ -330,7 +332,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
