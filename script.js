@@ -145,6 +145,9 @@ bookingForm.addEventListener('submit', async (e) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             access_key: '61557223-1d26-44cd-9838-e181fb2db0b5',
+            subject: 'New Booking — ARBarbershop',
+            replyto: data['Email'],
+            from_name: 'ARBarbershop',
             ...data
         })
     });
