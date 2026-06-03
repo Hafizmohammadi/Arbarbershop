@@ -767,6 +767,11 @@ a {
     cursor: pointer;
 }
 
+.booking-field select option:disabled {
+    color: #aaa;
+    background: #f0f0f0;
+}
+
 .booking-field .select-wrap {
     position: relative;
 }

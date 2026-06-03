@@ -88,6 +88,9 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
 });
 
+// ===== EMAILJS =====
+emailjs.init('QDMidID7hnycWGx7Y');
+
 // ===== SUPABASE =====
 const db = supabase.createClient(
     'https://apmkmwzgjohiqlgdvwmy.supabase.co',
@@ -115,7 +118,7 @@ dateInput.addEventListener('change', async () => {
 
     if (data) {
         data.forEach(booking => {
-            const opt = Array.from(timeSelect.options).find(o => o.textContent.includes(booking.preferred_time));
+            const opt = Array.from(timeSelect.options).find(o => o.textContent.trim() === booking.preferred_time);
             if (opt) {
                 opt.disabled = true;
                 opt.textContent += ' (Booked)';
@@ -126,7 +129,26 @@ dateInput.addEventListener('change', async () => {
 
 bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const submitBtn = bookingForm.querySelector('.booking-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Booking...';
+
     const data = Object.fromEntries(new FormData(bookingForm));
+
+    // Double-check the slot is still available before inserting
+    const { data: existing } = await db
+        .from('booking')
+        .select('preferred_time')
+        .eq('preferred_date', data['Preferred Date'])
+        .eq('preferred_time', data['Preferred Time']);
+
+    if (existing && existing.length > 0) {
+        alert('Sorry, that time slot was just taken. Please pick a different time.');
+        dateInput.dispatchEvent(new Event('change'));
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Confirm Booking';
+        return;
+    }
 
     const { error } = await db.from('booking').insert({
         full_name: data['Full Name'],
@@ -138,19 +160,31 @@ bookingForm.addEventListener('submit', async (e) => {
         notes: data['Notes']
     });
 
-    console.log('Insert error:', error);
+    if (error) {
+        alert('Something went wrong saving your booking. Please try again or call us directly.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Confirm Booking';
+        return;
+    }
 
-    await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            access_key: '61557223-1d26-44cd-9838-e181fb2db0b5',
-            subject: 'New Booking — ARBarbershop',
-            replyto: data['Email'],
-            from_name: 'ARBarbershop',
-            ...data
-        })
-    });
+    const emailParams = {
+        full_name: data['Full Name'],
+        phone: data['Phone'],
+        email: data['Email'],
+        service: data['Service'],
+        date: data['Preferred Date'],
+        time: data['Preferred Time'],
+        notes: data['Notes'] || 'None'
+    };
+
+    try {
+        await emailjs.send('service_28fnjhd', 'template_97vlqtd', emailParams);
+        if (data['Email']) {
+            await emailjs.send('service_28fnjhd', 'template_guutl08', emailParams);
+        }
+    } catch (emailErr) {
+        alert('EmailJS error: ' + JSON.stringify(emailErr));
+    }
 
     bookingForm.style.display = 'none';
     bookingSuccess.classList.add('show');
@@ -163,16 +197,17 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
     const btn = form.querySelector('.submit-btn');
     const data = Object.fromEntries(new FormData(form));
 
-    const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            access_key: '61557223-1d26-44cd-9838-e181fb2db0b5',
-            ...data
-        })
+    const result = await emailjs.send('service_28fnjhd', 'template_97vlqtd', {
+        full_name: `${data['First Name']} ${data['Last Name']}`,
+        phone: data['Phone'] || 'Not provided',
+        email: '',
+        service: data['Subject'] || 'Contact Form',
+        date: '',
+        time: '',
+        notes: data['Message'] || 'No message'
     });
 
-    if (response.ok) {
+    if (result.status === 200) {
         btn.textContent = 'Sent!';
         btn.style.background = '#2a7a2a';
         setTimeout(() => {
