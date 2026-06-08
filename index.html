@@ -85,94 +85,6 @@
     </nav>
 
 
-    <!-- ===== BOOKING MODAL ===== -->
-    <div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal">
-            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-            <h2 class="modal-title" id="modalTitle">Book an Appointment</h2>
-            <p class="modal-subtitle">Fill in the details below and we'll confirm your slot.</p>
-            <form class="booking-form" id="bookingForm">
-                <div class="booking-row two-col">
-                    <div class="booking-field">
-                        <label>Full Name</label>
-                        <input type="text" name="Full Name" placeholder="John Smith" required>
-                    </div>
-                    <div class="booking-field">
-                        <label>Phone</label>
-                        <input type="tel" name="Phone" placeholder="+1 (555) 000-0000">
-                    </div>
-                </div>
-                <div class="booking-field">
-                    <label>Email</label>
-                    <input type="email" name="Email" placeholder="john@example.com">
-                </div>
-                <div class="booking-field">
-                    <label>Service</label>
-                    <div class="select-wrap">
-                        <select name="Service" required>
-                            <option value="" disabled selected>Select a service</option>
-                            <option>Haircut — $35</option>
-                            <option>Beard Shaving — $25</option>
-                            <option>Beard Trim — $25</option>
-                            <option>Haircut with Beard — $45</option>
-                            <option>Haircut with Design — $40</option>
-                            <option>Signature VIP Cut — $90</option>
-                            <option>Lineup — $20</option>
-                            <option>Perm — $80</option>
-                            <option>Eyebrow Trimming — $10</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="booking-row two-col">
-                    <div class="booking-field">
-                        <label>Preferred Date</label>
-                        <input type="date" name="Preferred Date" required>
-                    </div>
-                    <div class="booking-field">
-                        <label>Preferred Time</label>
-                        <div class="select-wrap">
-                        <select name="Preferred Time" required>
-                            <option value="" disabled selected>Select a time</option>
-                            <option>10:00 AM</option>
-                            <option>10:30 AM</option>
-                            <option>11:00 AM</option>
-                            <option>11:30 AM</option>
-                            <option>12:00 PM</option>
-                            <option>12:30 PM</option>
-                            <option>1:00 PM</option>
-                            <option>1:30 PM</option>
-                            <option>2:00 PM</option>
-                            <option>2:30 PM</option>
-                            <option>3:00 PM</option>
-                            <option>3:30 PM</option>
-                            <option>4:00 PM</option>
-                            <option>4:30 PM</option>
-                            <option>5:00 PM</option>
-                            <option>5:30 PM</option>
-                            <option>6:00 PM</option>
-                            <option>6:30 PM</option>
-                            <option>7:00 PM</option>
-                            <option>7:30 PM</option>
-                            <option>8:00 PM</option>
-                        </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="booking-field">
-                    <label>Notes <span class="optional">(optional)</span></label>
-                    <textarea name="Notes" placeholder="Any special requests or preferences..." rows="3"></textarea>
-                </div>
-                <button type="submit" class="booking-submit">Confirm Booking</button>
-            </form>
-            <div class="booking-success" id="bookingSuccess">
-                <i class="fas fa-check-circle"></i>
-                <h3>Booking Confirmed!</h3>
-                <p>Thanks! We'll be in touch shortly to confirm your appointment.</p>
-                <button class="booking-close-success" id="closeSuccess">Done</button>
-            </div>
-        </div>
-    </div>
-
     <!-- ===== HERO ===== -->
     <section id="home" class="hero">
         <div class="hero-bg"></div>
@@ -371,8 +283,10 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+    <!-- Start Square Appointments Embed Code -->
+    <script src='https://square.site/appointments/buyer/widget/qewqoa9eyj42vj/LR55118FQB8CZ.js'></script>
+    <!-- End Square Appointments Embed Code -->
     <script src="script.js" defer></script>
 </body>
 </html>
