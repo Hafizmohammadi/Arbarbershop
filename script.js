@@ -50,16 +50,15 @@ document.querySelector('.hero-arrow').addEventListener('click', () => {
     document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
 });
 
-// ===== SQUARE BOOKING =====
-const SQUARE_BOOKING_URL = 'https://app.squareup.com/appointments/book/qewqoa9eyj42vj/LR55118FQB8CZ/start';
-
-function openBooking() {
-    window.open(SQUARE_BOOKING_URL, '_blank', 'noopener,noreferrer');
-}
-
-document.getElementById('navBookBtn').addEventListener('click', openBooking);
+// ===== SETMORE BOOKING =====
+// Setmore's widget script binds the popup to #Anywhere_button_iframe (the nav Book Now button).
+// Forward hero button clicks to it so both buttons open the same booking popup.
 const heroBookBtn = document.getElementById('heroBookBtn');
-if (heroBookBtn) heroBookBtn.addEventListener('click', openBooking);
+if (heroBookBtn) {
+    heroBookBtn.addEventListener('click', () => {
+        document.getElementById('Anywhere_button_iframe').click();
+    });
+}
 
 // ===== EMAILJS =====
 emailjs.init('QDMidID7hnycWGx7Y');

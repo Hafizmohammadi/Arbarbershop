@@ -85,6 +85,7 @@ a {
     align-items: center;
     gap: 9px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .logo-img {

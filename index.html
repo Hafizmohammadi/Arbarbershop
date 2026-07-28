@@ -63,10 +63,10 @@
 
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
-        <div class="nav-logo">
+        <a href="#home" class="nav-logo">
             <img class="logo-img" src="assets/Logo/0CB8F701-75B3-47D3-B8F2-84885CD1403C.png" alt="ARBarbershop logo">
             <span class="logo-text">ARBarbershop</span>
-        </div>
+        </a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#home" class="nav-link active">Home</a></li>
             <li><a href="#services" class="nav-link">Services</a></li>
@@ -75,7 +75,7 @@
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
         <div class="nav-actions">
-            <button class="nav-book-btn" id="navBookBtn">Book Now</button>
+            <button class="nav-book-btn anywhere-book-now-button" id="Anywhere_button_iframe" data-booking-url="https://arbarbershop-book.setmore.com" data-new-tab="true">Book Now</button>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -291,6 +291,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+    <script id="anywhere_book_now_script" src="https://assets.setmore.com/integration/book-now/live/v1/anywhere-book-now.js"></script>
     <script src="script.js" defer></script>
 </body>
 </html>
