@@ -602,6 +602,18 @@ a {
     color: var(--orange);
 }
 
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 80px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--gray-mid);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
 /* Map */
 .footer-map {
     background: var(--dark-hover);
