@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Open+Sans:ital,wght@0,400;0,600;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
     <link rel="preload" href="assets/FullSizeRender.jpg" as="image">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
@@ -67,22 +67,26 @@
             <img class="logo-img" src="assets/Logo/0CB8F701-75B3-47D3-B8F2-84885CD1403C.png" alt="ARBarbershop logo">
             <span class="logo-text">ARBarbershop</span>
         </a>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home" class="nav-link active">Home</a></li>
-            <li><a href="#services" class="nav-link">Services</a></li>
-            <li><a href="#gallery" class="nav-link">Gallery</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
         <div class="nav-actions">
             <a class="nav-book-btn" href="https://app.squareup.com/appointments/book/qewqoa9eyj42vj/LR55118FQB8CZ/start" target="_blank" rel="noopener">Book Now</a>
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-                <span></span>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
                 <span></span>
                 <span></span>
             </button>
         </div>
     </nav>
+
+    <!-- Full-screen nav menu — kept outside <nav> since its backdrop-filter would otherwise
+         re-anchor this position:fixed panel to the navbar's own box instead of the viewport -->
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#reviews" class="nav-link">Reviews</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
 
 
     <!-- ===== HERO ===== -->
@@ -102,7 +106,7 @@
     <!-- ===== SERVICES ===== -->
     <section id="services" class="services">
         <div class="services-container">
-            <h2 class="section-heading">SERVICES</h2>
+            <h2 class="section-heading">SERVICES & PRICING</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-card-info">
@@ -182,33 +186,109 @@
     <section id="gallery" class="gallery">
         <div class="gallery-container">
             <h2 class="gallery-heading">GALLERY</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img loading="lazy" class="gallery-img gallery-img--pompadour-fade" src="assets/Gallery/IMG_0595.JPG" alt="Slick pompadour with skin fade and beard">
+            <div class="portfolio-ring-wrap" id="portfolioRingWrap">
+                <button type="button" class="ring-arrow ring-arrow--left" id="ringArrowLeft" aria-label="Spin gallery left, faster">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="portfolio-ring" id="portfolioRing">
+                    <div class="ring-item" style="--i:0">
+                        <img loading="lazy" class="gallery-img--pompadour-fade" src="assets/Gallery/IMG_0595.JPG" alt="Slick pompadour with skin fade and beard">
+                    </div>
+                    <div class="ring-item" style="--i:1">
+                        <img loading="lazy" class="gallery-img--curly-fade-back" src="assets/Gallery/IMG_0999.JPG" alt="Curly top with skin fade, back view">
+                    </div>
+                    <div class="ring-item" style="--i:2">
+                        <img loading="lazy" class="gallery-img--textured-waves-front" src="assets/Gallery/IMG_1210.JPG" alt="Textured waves with fade, front view">
+                    </div>
+                    <div class="ring-item" style="--i:3">
+                        <img loading="lazy" class="gallery-img--textured-waves-side" src="assets/Gallery/IMG_1185.JPG" alt="Textured waves with fade, side view">
+                    </div>
+                    <div class="ring-item" style="--i:4">
+                        <img loading="lazy" src="assets/Gallery/IMG_1382.JPG" alt="High skin fade with short beard">
+                    </div>
+                    <div class="ring-item" style="--i:5">
+                        <img loading="lazy" class="gallery-img--curly-afro-fade" src="assets/Gallery/IMG_1549.JPG" alt="Curly afro top with skin fade and neckline design">
+                    </div>
+                    <div class="ring-item" style="--i:6">
+                        <img loading="lazy" class="gallery-img--razor-art-design" src="assets/Gallery/IMG_1815.JPG" alt="Custom razor art design shaved into fade">
+                    </div>
+                    <div class="ring-item" style="--i:7">
+                        <img loading="lazy" class="gallery-img--kids-pompadour-front" src="assets/Gallery/IMG_3902.JPG" alt="Kids pompadour fade, front view">
+                    </div>
+                    <div class="ring-item" style="--i:8">
+                        <img loading="lazy" src="assets/Gallery/IMG_3903.JPG" alt="Kids pompadour fade, side view">
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img loading="lazy" class="gallery-img gallery-img--curly-fade-back" src="assets/Gallery/IMG_0999.JPG" alt="Curly top with skin fade, back view">
+                <button type="button" class="ring-arrow ring-arrow--right" id="ringArrowRight" aria-label="Spin gallery right, faster">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== REVIEWS ===== -->
+    <!-- Sample reviews for layout/demo purposes — swap in real reviews -->
+    <section id="reviews" class="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-heading testimonials-heading" aria-label="What they say about us"><span class="fx">W</span>hat they say about us</h2>
+
+            <div class="reviews-track-wrap">
+                <div class="reviews-track" id="reviewsTrack">
+                    <div class="review-card">
+                        <i class="fas fa-quote-left review-quote" aria-hidden="true"></i>
+                        <p class="review-text">Best fade I've gotten in Salt Lake. Clean lines, no rush, and the shop always smells amazing. This is my go-to spot now.</p>
+                        <div class="review-foot">
+                            <span class="review-rating">5.0 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="review-location">3925 S State St, Millcreek, UT</span>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <i class="fas fa-quote-left review-quote" aria-hidden="true"></i>
+                        <p class="review-text">Got the VIP cut for a wedding and it was worth every penny. Hot towel shave felt incredible. Highly recommend booking ahead.</p>
+                        <div class="review-foot">
+                            <span class="review-rating">5.0 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="review-location">3925 S State St, Millcreek, UT</span>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <i class="fas fa-quote-left review-quote" aria-hidden="true"></i>
+                        <p class="review-text">Took my son in for his first real haircut and the barber was so patient with him. He walked out feeling like a little VIP himself.</p>
+                        <div class="review-foot">
+                            <span class="review-rating">5.0 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="review-location">3925 S State St, Millcreek, UT</span>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <i class="fas fa-quote-left review-quote" aria-hidden="true"></i>
+                        <p class="review-text">Asked for a custom design on my fade and it came out better than the reference photo I brought in. Steady hands, great attention to detail.</p>
+                        <div class="review-foot">
+                            <span class="review-rating">5.0 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="review-location">3925 S State St, Millcreek, UT</span>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <i class="fas fa-quote-left review-quote" aria-hidden="true"></i>
+                        <p class="review-text">Booked same-day through the site and was in the chair within the hour. Friendly staff, clean space, and my husband's lineup was razor sharp.</p>
+                        <div class="review-foot">
+                            <span class="review-rating">5.0 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="review-location">3925 S State St, Millcreek, UT</span>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <i class="fas fa-quote-left review-quote" aria-hidden="true"></i>
+                        <p class="review-text">Been coming here for regular trims for almost a year now. Consistent quality every single visit, which is rare to find.</p>
+                        <div class="review-foot">
+                            <span class="review-rating">5.0 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="review-location">3925 S State St, Millcreek, UT</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img loading="lazy" class="gallery-img gallery-img--textured-waves-front" src="assets/Gallery/IMG_1210.JPG" alt="Textured waves with fade, front view">
-                </div>
-                <div class="gallery-item">
-                    <img loading="lazy" class="gallery-img gallery-img--textured-waves-side" src="assets/Gallery/IMG_1185.JPG" alt="Textured waves with fade, side view">
-                </div>
-                <div class="gallery-item">
-                    <img loading="lazy" class="gallery-img gallery-img--high-skin-fade-beard" src="assets/Gallery/IMG_1382.JPG" alt="High skin fade with short beard">
-                </div>
-                <div class="gallery-item">
-                    <img loading="lazy" class="gallery-img gallery-img--curly-afro-fade" src="assets/Gallery/IMG_1549.JPG" alt="Curly afro top with skin fade and neckline design">
-                </div>
-                <div class="gallery-item">
-                    <img loading="lazy" class="gallery-img gallery-img--razor-art-design" src="assets/Gallery/IMG_1815.JPG" alt="Custom razor art design shaved into fade">
-                </div>
-                <div class="gallery-item">
-                    <img loading="lazy" class="gallery-img gallery-img--kids-pompadour-front" src="assets/Gallery/IMG_3902.JPG" alt="Kids pompadour fade, front view">
-                </div>
-                <div class="gallery-item">
-                    <img loading="lazy" class="gallery-img gallery-img--kids-pompadour-side" src="assets/Gallery/IMG_3903.JPG" alt="Kids pompadour fade, side view">
+            </div>
+
+            <div class="reviews-controls">
+                <div class="reviews-arrows">
+                    <button type="button" class="reviews-arrow" id="reviewsPrev" aria-label="Previous reviews"><i class="fas fa-arrow-left"></i></button>
+                    <button type="button" class="reviews-arrow" id="reviewsNext" aria-label="Next reviews"><i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
@@ -229,6 +309,71 @@
         </div>
     </section>
 
+    <!-- ===== FAQ ===== -->
+    <!-- Sample answers for hours/kids/booking are sourced from this page; payment methods & cancellation policy are placeholders — confirm and edit before launch -->
+    <section id="faq" class="faq">
+        <div class="faq-container">
+            <h2 class="section-heading">FAQs</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">
+                        <span>Do you accept walk-ins, or is an appointment required?</span>
+                        <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="faq-answer-wrap" id="faq-answer-1" role="region" aria-labelledby="faq-question-1">
+                        <div class="faq-answer-inner">
+                            <p>We don't accept walk-ins — an appointment is required. Please book ahead through the Book Now button to guarantee your preferred time.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">
+                        <span>What are your hours?</span>
+                        <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="faq-answer-wrap" id="faq-answer-2" role="region" aria-labelledby="faq-question-2">
+                        <div class="faq-answer-inner">
+                            <p>We're open Tuesday through Sunday, 10am to 8pm, and closed on Mondays.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3">
+                        <span>How do I book or cancel an appointment?</span>
+                        <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="faq-answer-wrap" id="faq-answer-3" role="region" aria-labelledby="faq-question-3">
+                        <div class="faq-answer-inner">
+                            <p>Book directly through the Book Now button on this site. To reschedule or cancel, please give us a call as early as possible so we can offer the slot to another client.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4">
+                        <span>Do you cut kids' hair?</span>
+                        <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="faq-answer-wrap" id="faq-answer-4" role="region" aria-labelledby="faq-question-4">
+                        <div class="faq-answer-inner">
+                            <p>Yes — our Kids service is a full haircut tailored for children, and our barbers are patient with first-time cuts.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-5" id="faq-question-5">
+                        <span>What payment methods do you accept?</span>
+                        <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="faq-answer-wrap" id="faq-answer-5" role="region" aria-labelledby="faq-question-5">
+                        <div class="faq-answer-inner">
+                            <p>We accept all major credit and debit cards, as well as cash and mobile payments like Apple Pay and Google Pay.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== CONTACT ===== -->
     <section id="contact" class="contact">
         <div class="contact-pattern"></div>
@@ -240,7 +385,7 @@
                     <input type="text" name="Last Name" placeholder="Last Name" required>
                 </div>
                 <div class="form-row two-col">
-                    <input type="tel" name="Phone" placeholder="Phone">
+                    <input type="email" name="Email" placeholder="Email">
                     <input type="text" name="Subject" placeholder="Subject">
                 </div>
                 <div class="form-row">
@@ -270,8 +415,8 @@
         <div class="footer-top">
             <div class="footer-col">
                 <h3>SAY HELLO</h3>
-                <p>Phone: 385 264 8817</p>
-                <p>Email: arbarbershop551@gmail.com</p>
+                <p><span>Phone:</span> <bdi>385 264 8817</bdi></p>
+                <p><span>Email:</span> <bdi>arbarbershop551@gmail.com</bdi></p>
                 <div class="footer-social">
                     <a href="https://www.instagram.com/ali_barber801?igsh=ZzRnYTU5bHVxaWk4&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.tiktok.com/@ali348764?_r=1&_t=ZT-9725HRgM1iH" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
@@ -279,8 +424,8 @@
             </div>
             <div class="footer-col">
                 <h3>OUR ADDRESS</h3>
-                <p>3925 S State St, Suite #D</p>
-                <p>Millcreek, UT 84107</p>
+                <p><bdi>3925 S State St, Suite #D</bdi></p>
+                <p><bdi>Millcreek, UT 84107</bdi></p>
             </div>
             <div class="footer-col">
                 <h3>OPENING HOURS</h3>
@@ -289,7 +434,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; ARBarbershop. All rights reserved.</p>
+            <p class="footer-wordmark">ARBarbershop</p>
+            <p class="footer-copyright">&copy; 2026 ARBarbershop. All rights reserved.</p>
         </div>
     </footer>
 
