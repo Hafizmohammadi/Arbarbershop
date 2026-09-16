@@ -723,9 +723,8 @@ a {
     margin-bottom: 40px;
 }
 
-/* Mixed-glyph accent letters within the wordmark */
 .testimonials-heading .fx {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-weight: 400;
 }
 
@@ -759,13 +758,75 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 24px;
+    gap: 14px;
     min-height: 220px;
     transition: background 0.3s;
 }
 
 .review-card:hover {
     background: #1a1a1a;
+}
+
+.review-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.review-avatar {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    background: var(--orange);
+}
+
+.review-card:nth-child(2) .review-avatar {
+    background: #3f6b8a;
+}
+
+.review-card:nth-child(3) .review-avatar {
+    background: #a83c3c;
+}
+
+.review-card:nth-child(4) .review-avatar {
+    background: #4b7a63;
+}
+
+.review-card:nth-child(5) .review-avatar {
+    background: #8a5a35;
+}
+
+.review-card:nth-child(6) .review-avatar {
+    background: var(--dark-hover);
+}
+
+.review-avatar-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.review-name {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.review-card .review-quote {
+    margin-top: -4px;
 }
 
 .review-quote {
@@ -809,6 +870,31 @@ a {
     align-items: center;
     justify-content: center;
     margin-top: 28px;
+}
+
+.reviews-cta-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+.testimonials-cta {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--orange);
+    border: 1.5px solid var(--orange);
+    border-radius: 999px;
+    padding: 12px 28px;
+    transition: background 0.25s, color 0.25s;
+    white-space: nowrap;
+}
+
+.testimonials-cta:hover {
+    background: var(--orange);
+    color: var(--dark);
 }
 
 .reviews-arrows {
@@ -1121,11 +1207,11 @@ a {
 
 .footer-wordmark {
     font-family: var(--font-display);
-    font-size: clamp(40px, 7vw, 90px);
+    font-size: clamp(26px, 9vw, 90px);
     line-height: 1;
     color: var(--dark);
     margin-bottom: 14px;
-    word-break: break-word;
+    white-space: nowrap;
 }
 
 .footer-copyright {
@@ -1740,6 +1826,9 @@ a {
     .footer-social {
         justify-content: center;
     }
+    .footer-bottom {
+        padding: 32px 24px 22px;
+    }
     .footer-map {
         height: 220px;
     }
@@ -1883,6 +1972,9 @@ a {
     }
     .footer-map {
         height: 190px;
+    }
+    .footer-bottom {
+        padding: 28px 16px 20px;
     }
 
     /* --- Modal --- */

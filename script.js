@@ -228,3 +228,13 @@ document.querySelectorAll('.faq-item').forEach(item => {
         wrap.scrollBy({ left: step(), behavior: 'smooth' });
     });
 })();
+
+// ===== REVIEW AVATAR FALLBACK =====
+// Falls back to the colored initial behind it if a reviewer photo hasn't been added yet.
+document.querySelectorAll('.review-avatar-img').forEach(img => {
+    if (img.complete && img.naturalWidth === 0) {
+        img.remove();
+    } else {
+        img.addEventListener('error', () => img.remove(), { once: true });
+    }
+});
